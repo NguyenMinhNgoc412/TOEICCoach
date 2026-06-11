@@ -1,0 +1,85 @@
+@startuml
+left to right direction
+
+actor Student
+actor Admin
+actor "AI Service" as AI
+actor "Object Storage" as Storage
+
+rectangle "TOEIC Coach AI MVP" {
+  usecase "Register / Login" as UC1
+  usecase "Manage Learning Profile" as UC2
+
+  usecase "Take Placement Test" as UC3
+  usecase "View Estimated Score" as UC4
+  usecase "View Initial Weakness" as UC5
+
+  usecase "Practice Questions" as UC6
+  usecase "Practice by Part" as UC7
+  usecase "Practice by Grammar Topic" as UC8
+  usecase "Practice by Business Topic" as UC9
+  usecase "Practice by Difficulty" as UC10
+  usecase "Play Listening Audio" as UC11
+
+  usecase "Submit Answers" as UC12
+  usecase "View Result" as UC13
+  usecase "Review Wrong Answers" as UC14
+  usecase "View Weakness Analysis" as UC15
+
+  usecase "View Roadmap" as UC16
+  usecase "View Dashboard" as UC17
+
+  usecase "Study Flashcards" as UC18
+  usecase "Review Due Flashcards" as UC19
+
+  usecase "Request AI Answer Explanation" as UC20
+  usecase "Request AI Learning Coach Feedback" as UC21
+
+  usecase "Manage Questions" as UC22
+  usecase "Import Questions" as UC23
+  usecase "Upload Audio" as UC24
+  usecase "Manage Flashcards" as UC25
+  usecase "Manage Users" as UC26
+}
+
+Student --> UC1
+Student --> UC2
+Student --> UC3
+Student --> UC6
+Student --> UC12
+Student --> UC16
+Student --> UC17
+Student --> UC18
+
+UC3 --> UC4 : <<include>>
+UC3 --> UC5 : <<include>>
+
+UC6 --> UC7 : <<include>>
+UC6 --> UC8 : <<include>>
+UC6 --> UC9 : <<include>>
+UC6 --> UC10 : <<include>>
+UC6 --> UC11 : <<include>>
+
+UC12 --> UC13 : <<include>>
+UC12 --> UC14 : <<include>>
+UC12 --> UC15 : <<include>>
+
+UC18 --> UC19 : <<include>>
+
+UC20 ..> UC14 : <<extend>>
+UC21 ..> UC17 : <<extend>>
+
+UC20 --> AI
+UC21 --> AI
+
+UC11 --> Storage
+
+Admin --> UC22
+Admin --> UC23
+Admin --> UC24
+Admin --> UC25
+Admin --> UC26
+
+UC24 --> Storage
+
+@enduml

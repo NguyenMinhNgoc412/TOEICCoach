@@ -1,0 +1,167 @@
+@startuml
+hide circle
+skinparam linetype ortho
+
+entity "User" as users {
+  * id : UUID <<PK>>
+  --
+  email : string <<unique>>
+  password_hash : string
+  role : enum
+  created_at : datetime
+}
+
+entity "Profile" as profiles {
+  * id : UUID <<PK>>
+  --
+  user_id : UUID <<FK>>
+  full_name : string
+  target_score : int
+  current_level : enum
+  exam_date : date
+}
+
+entity "Roadmap" as roadmaps {
+  * id : UUID <<PK>>
+  --
+  user_id : UUID <<FK>>
+  target_score : int
+  current_score : int
+  status : enum
+  created_at : datetime
+}
+
+entity "Question" as questions {
+  * id : UUID <<PK>>
+  --
+  part : int
+  type : enum
+  content : text
+  correct_answer : string
+  explanation : text
+  difficulty : enum
+  audio_id : UUID <<FK nullable>>
+  grammar_topic_id : UUID <<FK nullable>>
+  business_topic_id : UUID <<FK nullable>>
+}
+
+entity "Choice" as choices {
+  * id : UUID <<PK>>
+  --
+  question_id : UUID <<FK>>
+  label : string
+  content : text
+  is_correct : boolean
+}
+
+entity "Audio" as audios {
+  * id : UUID <<PK>>
+  --
+  file_url : string
+  duration_seconds : int
+  transcript_id : UUID <<FK nullable>>
+}
+
+entity "Transcript" as transcripts {
+  * id : UUID <<PK>>
+  --
+  content : text
+}
+
+entity "GrammarTopic" as grammar_topics {
+  * id : UUID <<PK>>
+  --
+  name : string
+  description : text
+}
+
+entity "BusinessTopic" as business_topics {
+  * id : UUID <<PK>>
+  --
+  name : string
+  description : text
+}
+
+entity "Submission" as submissions {
+  * id : UUID <<PK>>
+  --
+  user_id : UUID <<FK>>
+  total_score : int
+  started_at : datetime
+  submitted_at : datetime
+}
+
+entity "SubmissionAnswer" as submission_answers {
+  * id : UUID <<PK>>
+  --
+  submission_id : UUID <<FK>>
+  question_id : UUID <<FK>>
+  selected_choice_id : UUID <<FK nullable>>
+  user_answer : text
+  is_correct : boolean
+}
+
+entity "Flashcard" as flashcards {
+  * id : UUID <<PK>>
+  --
+  user_id : UUID <<FK>>
+  question_id : UUID <<FK nullable>>
+  front : text
+  back : text
+  source : enum
+}
+
+entity "FlashcardReview" as flashcard_reviews {
+  * id : UUID <<PK>>
+  --
+  flashcard_id : UUID <<FK>>
+  user_id : UUID <<FK>>
+  rating : int
+  reviewed_at : datetime
+  next_review_at : datetime
+}
+
+entity "AIExplanation" as ai_explanations {
+  * id : UUID <<PK>>
+  --
+  user_id : UUID <<FK>>
+  question_id : UUID <<FK>>
+  content : text
+  created_at : datetime
+}
+
+entity "AICoachFeedback" as ai_coach_feedbacks {
+  * id : UUID <<PK>>
+  --
+  user_id : UUID <<FK>>
+  submission_id : UUID <<FK nullable>>
+  content : text
+  created_at : datetime
+}
+
+users ||--|| profiles
+users ||--o{ roadmaps
+users ||--o{ submissions
+users ||--o{ flashcards
+users ||--o{ flashcard_reviews
+users ||--o{ ai_explanations
+users ||--o{ ai_coach_feedbacks
+
+questions ||--o{ choices
+questions }o--|| audios
+audios ||--o| transcripts
+
+questions }o--o| grammar_topics
+questions }o--o| business_topics
+
+submissions ||--o{ submission_answers
+questions ||--o{ submission_answers
+choices ||--o{ submission_answers
+
+questions ||--o{ flashcards
+flashcards ||--o{ flashcard_reviews
+
+questions ||--o{ ai_explanations
+submissions ||--o{ ai_coach_feedbacks
+
+@enduml

@@ -507,3 +507,409 @@ PRD được xem là hoàn chỉnh khi:
 - Có yêu cầu chức năng và phi chức năng đủ để định hướng thiết kế sản phẩm.
 - Có mô hình kinh doanh và success metrics rõ ràng.
 - Có rủi ro, giả định và roadmap mức cao để hỗ trợ ra quyết định tiếp theo.
+
+# MVP Scope (Version 1.0)
+
+## Mục tiêu MVP
+
+Phiên bản MVP tập trung giải quyết 3 câu hỏi quan trọng nhất của người học TOEIC:
+
+* Tôi đang ở trình độ nào?
+* Tôi đang yếu ở những phần nào?
+* Tôi nên học gì tiếp theo để đạt mục tiêu điểm số?
+
+MVP ưu tiên xây dựng nền tảng học tập cá nhân hóa dựa trên dữ liệu người dùng kết hợp AI hỗ trợ giải thích và nhận xét học tập, thay vì cố gắng xây dựng toàn bộ hệ sinh thái AI phức tạp ngay từ đầu.
+
+---
+
+# 1. Authentication & User Profile
+
+## Chức năng
+
+* Đăng ký tài khoản
+* Đăng nhập
+* Đăng xuất
+* Quên mật khẩu
+* Quản lý hồ sơ học tập
+
+## Hồ sơ học tập
+
+Người dùng cung cấp:
+
+* Mục tiêu điểm TOEIC
+* Ngày dự kiến thi
+* Thời lượng học mỗi ngày
+* Số ngày học mỗi tuần
+
+Thông tin này được sử dụng để xây dựng lộ trình học tập.
+
+---
+
+# 2. Placement Test
+
+## Mục tiêu
+
+Đánh giá trình độ hiện tại của người học.
+
+## Chức năng
+
+* Làm bài Placement Test đầu vào
+* Chấm điểm tự động
+* Ước lượng điểm TOEIC hiện tại
+* Phân tích điểm mạnh/yếu theo từng Part
+
+## Kết quả
+
+Ví dụ:
+
+* Listening: 260
+* Reading: 240
+* Estimated TOEIC: 500
+
+---
+
+# 3. Question Bank
+
+Đây là module cốt lõi của hệ thống.
+
+## Metadata của câu hỏi
+
+Mỗi câu hỏi được gắn:
+
+* TOEIC Part
+* Grammar Topic
+* Business Topic
+* Difficulty
+* Skill
+
+## TOEIC Part
+
+* Part 1
+* Part 2
+* Part 3
+* Part 4
+* Part 5
+* Part 6
+* Part 7
+
+## Grammar Topic
+
+Ví dụ:
+
+* Verb Tense
+* Passive Voice
+* Relative Clause
+* Gerund
+* Infinitive
+* Preposition
+
+## Business Topic
+
+Ví dụ:
+
+* Office
+* Meeting
+* Human Resources
+* Marketing
+* Finance
+* Logistics
+* Customer Service
+* Travel
+
+## Difficulty
+
+* Easy
+* Medium
+* Hard
+
+---
+
+# 4. Practice Mode
+
+## Luyện theo Part
+
+Ví dụ:
+
+* Part 5
+* Part 7
+
+## Luyện theo Grammar Topic
+
+Ví dụ:
+
+* Passive Voice
+* Relative Clause
+
+## Luyện theo Business Topic
+
+Ví dụ:
+
+* Office
+* Marketing
+* Finance
+
+## Luyện theo Difficulty
+
+* Easy
+* Medium
+* Hard
+
+---
+
+# 5. Submission & Result
+
+Sau khi người dùng hoàn thành bài luyện tập:
+
+## Hệ thống
+
+* Lưu câu trả lời
+* Chấm điểm
+* Tính độ chính xác
+* Phân tích lỗi sai
+* Lưu lịch sử học tập
+
+## Kết quả
+
+Ví dụ:
+
+* Correct: 24/30
+* Accuracy: 80%
+
+---
+
+# 6. Weakness Analysis
+
+Đây là tính năng cá nhân hóa quan trọng nhất của MVP.
+
+## Chức năng
+
+Hệ thống theo dõi kết quả học tập theo:
+
+* Part
+* Grammar Topic
+* Business Topic
+* Difficulty
+
+## Ví dụ
+
+Verb Tense: 62%
+
+Passive Voice: 45%
+
+Relative Clause: 80%
+
+## Kết quả
+
+Hệ thống xác định:
+
+Weakest Topics:
+
+1. Passive Voice
+2. Verb Tense
+
+Strongest Topics:
+
+1. Vocabulary
+2. Preposition
+
+---
+
+# 7. Roadmap Generator (Rule-Based)
+
+Phiên bản MVP sử dụng Rule Engine thay vì AI.
+
+## Input
+
+* Current Score
+* Target Score
+* Weak Topics
+* Available Study Time
+
+## Output
+
+Roadmap theo tuần.
+
+Ví dụ:
+
+Week 1:
+
+* Passive Voice
+* Verb Tense
+* Part 5
+
+Week 2:
+
+* Relative Clause
+* Part 6
+
+Mục tiêu là tạo lộ trình học có cơ sở thay vì phụ thuộc hoàn toàn vào AI.
+
+---
+
+# 8. Dashboard
+
+Dashboard hiển thị:
+
+* Current Score
+* Target Score
+* Progress
+* Weakest Topics
+* Recent Tests
+* Study Streak
+
+Ví dụ:
+
+Current Score: 550
+
+Target Score: 750
+
+Progress: 73%
+
+---
+
+# 9. Flashcard System
+
+## Flashcard theo chủ đề
+
+Ví dụ:
+
+* Office
+* Marketing
+* Travel
+* Finance
+
+## Nội dung thẻ
+
+* Word
+* Meaning
+* Example
+
+## Review
+
+Người dùng đánh giá:
+
+* Easy
+* Medium
+* Hard
+
+## Thuật toán
+
+Spaced Repetition cơ bản:
+
+* Easy → 7 ngày
+* Medium → 3 ngày
+* Hard → 1 ngày
+
+---
+
+# 10. AI Answer Explanation
+
+Đây là tính năng AI đầu tiên của MVP.
+
+## Mục tiêu
+
+Giúp người học hiểu vì sao đáp án đúng hoặc sai.
+
+## Luồng
+
+Người dùng chọn:
+
+Explain Answer
+
+Hệ thống gửi:
+
+* Question
+* Choices
+* Correct Answer
+* User Answer
+
+đến LLM.
+
+## Kết quả
+
+AI trả lời:
+
+* Giải thích đáp án đúng
+* Giải thích lỗi sai
+* Mẹo làm nhanh
+
+---
+
+# 11. AI Learning Coach
+
+Đây là tính năng AI thứ hai của MVP.
+
+## Input
+
+* Estimated Score
+* Target Score
+* Weak Topics
+* Recent Performance
+
+## Chức năng
+
+AI tạo nhận xét học tập ngắn gọn:
+
+* Điểm mạnh
+* Điểm yếu
+* Nội dung nên học tiếp theo
+
+## Ví dụ
+
+"Bạn đang làm tốt ở Vocabulary.
+
+Tuy nhiên Passive Voice và Relative Clause vẫn dưới 50%.
+
+Tuần tới nên tập trung Part 5 và luyện thêm 30 câu Passive Voice."
+
+---
+
+# 12. Admin Panel
+
+## Question Management
+
+* Create Question
+* Update Question
+* Delete Question
+
+## Import Data
+
+* CSV Import
+* JSON Import
+
+## User Management
+
+* View Users
+* Disable User
+
+---
+
+# Những tính năng KHÔNG thuộc MVP
+
+Các tính năng dưới đây được chuyển sang các phiên bản tiếp theo:
+
+## Version 2
+
+* AI Chatbot
+* AI Roadmap Generation
+* Personalized Quiz Generation
+
+## Version 3
+
+* Score Prediction
+* Adaptive Learning
+* Dynamic Rescheduling
+
+## Version 4
+
+* Leaderboard
+* Achievement System
+* Streak Insurance
+* Gamification nâng cao
+
+## Version 5
+
+* Audio Distractor Analysis
+* Speaking Practice
+* Writing Review
+* AI Interview Simulation
